@@ -8,6 +8,7 @@ namespace Projeto
         private byte? _idade { get; set; }
         private char? _sexo { get; set; }
 
+        //Metodo para validar se existe numero na string
         private bool Letras(string verify)
         {
             if (verify.Contains("1") || verify.Contains("2") || verify.Contains("3") || verify.Contains("4") || verify.Contains("5") || verify.Contains("6") || verify.Contains("7") || verify.Contains("8") || verify.Contains("9") || verify.Contains("0"))
@@ -15,6 +16,7 @@ namespace Projeto
             else
                 return true;
         }
+        //Usando o proprio set para fazer a validação do nome da pessoa
         public string Nome
         {
             get { return _nome; }
@@ -30,6 +32,7 @@ namespace Projeto
                     _nome = value;
             }
         }
+        //Usando o proprio set para fazer a validação do sexo da pessoa
         public string Sexo
         {
             get { return _sexo.ToString(); }
@@ -44,6 +47,7 @@ namespace Projeto
                     _sexo = valido;
             }
         }
+        //Usando o proprio set para fazer a validação da idade da pessoa
         public string Idade
         {
             get { return _idade.ToString(); }

@@ -37,7 +37,7 @@ namespace Projeto
                     num = result;
             }
             while (num == 0);
-
+            //Com o numero digitado pelo usuario faz o cadastro dos alunos usando a quantidade solicitada
             for (int i = 0; i < num; i++)
             {
                 Aluno aluno = new Aluno();
