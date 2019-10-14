@@ -25,14 +25,14 @@ namespace Projeto
             //Pede a idade do aluno, fazendo a validação dentro da classe pessoa
             do
             {
-                Console.Write($"Qual a idade do {aluno.Nome}? ");
+                Console.Write($"Qual a idade do(a) {aluno.Nome}? ");
                 aluno.Idade = (Console.ReadLine());
             }
             while (aluno.Idade == "");
             //Pede o sexo do aluno, fazendo a validação dentro da classe pessoa
             do
             {
-                Console.Write("Qual o sexo do aluno (M / F)? ");
+                Console.Write($"Qual o sexo do(a) {aluno.Nome} (M / F)? ");
                 aluno.Sexo = (Console.ReadLine());
             }
             while (aluno.Sexo == "");
@@ -40,13 +40,13 @@ namespace Projeto
             char bolsa = ' ';
             do
             {
-                Console.Write("O aluno é bolsista (S / N)? ");
+                Console.Write($"O(a) {aluno.Nome} é bolsista (S / N)? ");
                 string testeBolsa = Console.ReadLine();
                 if (char.TryParse(testeBolsa, out char result) && result == 's' || result == 'S' || result == 'n' || result == 'N')
                     bolsa = result;
                 else
                 {
-                    Console.WriteLine("Valor invalido, Digite novamente");
+                    Console.WriteLine("\nValor invalido\nDigite novamente\n");
                     bolsa = ' ';
                 }
             }

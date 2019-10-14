@@ -24,14 +24,14 @@ namespace Projeto
             //Pergunta a idade do professor, e faz a validação na classe pessoa
             do
             {
-                Console.Write("Digite a idade do professor: ");
+                Console.Write($"Digite a idade do(a) {professor.Nome} : ");
                 professor.Idade = (Console.ReadLine());
             }
             while (professor.Idade == "");
             //Pergunta o sexo do professor, e faz a validação na classe pessoa
             do
             {
-                Console.Write("Qual o sexo do professor (M / F): ");
+                Console.Write($"Qual o sexo do(a) {professor.Nome} (M / F): ");
                 professor.Sexo = (Console.ReadLine());
             }
             while (professor.Sexo == "");

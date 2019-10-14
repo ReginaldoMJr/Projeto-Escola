@@ -28,9 +28,9 @@ namespace Projeto
             {
                 Console.Write("Quantos alunos pretende cadastrar? ");
                 string testeNum = Console.ReadLine();
-                if (byte.TryParse(testeNum, out byte result) == false && result > 100)
+                if (byte.TryParse(testeNum, out byte result) == false || result > 100)
                 {
-                    Console.WriteLine("Invalido, Digite novamente");
+                    Console.WriteLine("\nNumero invalido, Digite novamente\n");
                     num = 0;
                 }
                 else
