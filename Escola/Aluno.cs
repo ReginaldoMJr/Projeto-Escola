@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Projeto
 {
@@ -42,8 +43,8 @@ namespace Projeto
             {
                 Console.Write($"O(a) {aluno.Nome} é bolsista (S / N)? ");
                 string testeBolsa = Console.ReadLine();
-                if (char.TryParse(testeBolsa, out char result) && result == 's' || result == 'S' || result == 'n' || result == 'N')
-                    bolsa = result;
+                if (Regex.IsMatch(testeBolsa, "^[sSnN]{1}$"))
+                    bolsa = char.Parse(testeBolsa);
                 else
                 {
                     Console.WriteLine("\nValor invalido\nDigite novamente\n");
