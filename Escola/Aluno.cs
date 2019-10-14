@@ -38,7 +38,7 @@ namespace Projeto
             }
             while (aluno.Sexo == "");
             //Pergunta se o aluno é bolsista ou não, e faz a validação dentro da propria classe
-            char bolsa = ' ';
+            char bolsa;
             do
             {
                 Console.Write($"O(a) {aluno.Nome} é bolsista (S / N)? ");

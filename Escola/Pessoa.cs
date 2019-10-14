@@ -33,7 +33,6 @@ namespace Projeto
             set
             {
                 if (Regex.IsMatch(value, "^[mfMF]{1}$"))
-                /*if (char.TryParse(value, out char valido) == false || valido != 'm' && valido != 'f' && valido != 'M' && valido != 'F')*/
                 {
                     _sexo = char.Parse(value);
                 }

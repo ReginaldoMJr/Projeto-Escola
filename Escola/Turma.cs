@@ -7,9 +7,7 @@ namespace Projeto
     {
         public int NumTurma { get; set; }
         public Professor Professor { get; set; }
-
-
-        List<Aluno> alunos = new List<Aluno>();
+        public List<Aluno> alunos = new List<Aluno>();
         //Cadastrar a turma, com numero de turma aleatório 
         public void CadastrarTurma()
         {
@@ -23,7 +21,7 @@ namespace Projeto
             Professor = professor.CadastrarProfessor();
             //Fazer o cadastro de varios alunos
             Console.WriteLine("\n====== Cadastro Aluno ======\n");
-            int num = 0;
+            int num;
             do
             {
                 Console.Write("Quantos alunos pretende cadastrar? ");
