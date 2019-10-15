@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Projeto
 {
@@ -37,6 +38,7 @@ namespace Projeto
             while (professor.Sexo == "");
             return professor;
         }
+        
     }
 }
 
