@@ -11,14 +11,13 @@ namespace Projeto
         //Cadastrar a turma, com numero de turma aleatório 
         public void CadastrarTurma()
         {
-            Turma turma = new Turma();
             Random numTurma = new Random();
             NumTurma = numTurma.Next(10, 99);
             Console.Write($"Numero da turma: {NumTurma}\n");
             //Fazer o cadastro de um professor
             Console.Write("\n====== Cadastrar Professor ======\n");
-            Professor professor = new Professor();
-            Professor = professor.CadastrarProfessor();
+            Professor = new Professor();
+            Professor = Professor.CadastrarProfessor();
             //Fazer o cadastro de varios alunos
             Console.WriteLine("\n====== Cadastro Aluno ======\n");
             int num;

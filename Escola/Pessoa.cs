@@ -15,10 +15,8 @@ namespace Projeto
             get { return _nome; }
             set
             {
-                if (Regex.IsMatch(value, "^[a-z A-Z]{1,30}$") && !value.Contains("  "))
-                {
+                if (Regex.IsMatch(value, "^[a-z A-Z]{1,30}$") && !value.Contains("  ") && !string.IsNullOrWhiteSpace(value))
                     _nome = value.Trim();
-                }
                 else
                 {
                     Console.WriteLine("\nNome invalido\nDigite os dados novamente\n");
@@ -33,9 +31,7 @@ namespace Projeto
             set
             {
                 if (Regex.IsMatch(value, "^[mfMF]{1}$"))
-                {
                     _sexo = char.Parse(value);
-                }
                 else
                 {
                     Console.WriteLine("\nSexo invalido\nDigite os dados novamente\n");
