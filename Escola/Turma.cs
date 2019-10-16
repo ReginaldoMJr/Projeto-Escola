@@ -9,18 +9,29 @@ namespace Projeto
         public Professor professor;        
         public List<Aluno> alunos = new List<Aluno>();
         //Cadastrar a turma, com numero de turma aleatório 
+        Escola Escola = new Escola();
         public void CadastrarTurma()
         {
-            Random numTurma = new Random();
-            NumTurma = numTurma.Next(10, 99);
+            do {
+                Random numTurma = new Random();
+                NumTurma = numTurma.Next(10, 99); }
+            while (Escola.turmas.Exists(x => x.NumTurma == NumTurma));
             Console.Write($"Numero da turma: {NumTurma}\n");
         }
         //Metodo para mostrar todos os dados do programa
-        public void ExibirAlunos()
+        public void MostrarTurma()
         {
-            //Console.WriteLine($"\nTurma: {NumTurma}      Professor: {Professor.Nome} -- Idade: {Professor.Idade} -- Sexo: {Professor.Sexo} -- Registro: {Professor.Registro}\n\nAlunos: \n");
-            foreach (Aluno s in alunos)
-                Console.WriteLine($"Matricula: {s.Matricula} -- Nome: {s.Nome} -- Idade: {s.Idade} -- Sexo: {s.Sexo} -- Bolsista: {s.Bolsista}\n");
+            Console.WriteLine($"=================== Turma {NumTurma} =====================\n");
+            if (professor == null)
+            {
+                Console.WriteLine(" Professor Não atribuido");
+            }
+            else
+                Console.Write($"Professor: {professor.Nome} -- Idade: {professor.Idade} -- Sexo: {professor.Sexo} -- Registro: {professor.Registro}\n");
+            Console.WriteLine("\n==================== Alunos ========================\n");
+            foreach (Aluno a in alunos)
+                Console.WriteLine($"Matricula: {a.Matricula} -- Nome: {a.Nome} -- Idade: {a.Idade} -- Sexo: {a.Sexo} -- Bolsista: {a.Bolsista}\n");    
         }
+
     }
 }

@@ -12,10 +12,11 @@ namespace Projeto
         public Aluno CadastrarAluno()
         {
             //Cria um aluno com numero de matricula aleatorio
+            Console.WriteLine("================= Cadastro Aluno ===================\n");
             Aluno aluno = new Aluno();
             Random aleatorio = new Random();
             aluno.Matricula = aleatorio.Next(1000, 9999);
-            Console.WriteLine($"\nNumero da matricula: {aluno.Matricula}");
+            Console.WriteLine($"Numero da matricula: {aluno.Matricula}");
             //Pede o nome do aluno, fazendo a validação dentro da classe pessoa
             do
             {

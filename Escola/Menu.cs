@@ -17,6 +17,8 @@ namespace Projeto
             {
                 do
                 {
+                    Console.Clear();
+                    Console.WriteLine("============== Menu =================");
                     Console.WriteLine("1 - Cadastrar aluno");
                     Console.WriteLine("2 - Cadastrar professor");
                     Console.WriteLine("3 - Cadastrar turma");
@@ -27,33 +29,60 @@ namespace Projeto
                     Console.WriteLine("8 - Atribuir professor a turma");
                     num = Console.ReadLine();
                 }
-                while (!Regex.IsMatch(num, "^[1-9]{1}$"));
+                while (!Regex.IsMatch(num, "^[1-8]{1}$"));
 
                 if (num == "1")
                 {
-                    Console.Clear();
-                    Aluno aluno = new Aluno();
-                    aluno = aluno.CadastrarAluno();
-                    turma.alunos.Add(aluno);
+                    do
+                    {
+                        Console.Clear();
+                        Console.Write("Quantos alunos deseja cadastrar? ");
+                        num = Console.ReadLine();
+                    }
+                    while (Regex.IsMatch(num, "^[1-9]{2}$") && int.Parse(num) < 15);
+                    for (int i = 0; i < int.Parse(num); i++)
+                    {
+                        Aluno aluno = new Aluno();
+                        aluno = aluno.CadastrarAluno();
+                        escola.alunos.Add(aluno);
+                    }
                 }
                 else if (num == "2")
                 {
-                    Console.Clear();
-                    Professor professor = new Professor();
-                    professor = professor.CadastrarProfessor();
-                    escola.professores.Add(professor);
+                    do
+                    {
+                        Console.Clear();
+                        Console.Write("Quantos professores deseja cadastrar? ");
+                        num = Console.ReadLine();
+                    }
+                    while (Regex.IsMatch(num, "^[1-9]{2}$") && int.Parse(num) < 15);
+                    for (int i = 0; i < int.Parse(num); i++)
+                    {
+                        Professor professor = new Professor();
+                        professor = professor.CadastrarProfessor();
+                        escola.professores.Add(professor);
+                    }
                 }
                 else if (num == "3")
                 {
-                    Console.Clear();
-                    Turma turma1 = new Turma();
-                    turma1.CadastrarTurma();
-                    escola.turmas.Add(turma1);
+                    do
+                    {
+                        Console.Clear();
+                        Console.Write("Quantas turmas deseja cadastrar? ");
+                        num = Console.ReadLine();
+                    }
+                    while (Regex.IsMatch(num, "^[1-9]{2}$") && int.Parse(num) < 15);
+                    for (int i = 0; i < int.Parse(num); i++)
+                    {
+                        Turma turma1 = new Turma();
+                        turma1.CadastrarTurma();
+                        escola.turmas.Add(turma1);
+                    }
                 }
                 else if (num == "4")
                 {
                     Console.Clear();
-                    turma.ExibirAlunos();
+                    escola.ExibirAlunos();
                 }
                 else if (num == "5")
                 {
@@ -63,37 +92,33 @@ namespace Projeto
                 else if (num == "6")
                 {
                     Console.Clear();
-                    escola.ExibirTurmas();
+                    if (escola.turmas.Count > 0)
+                        escola.TurmasAtualizado();
+                    else
+                        Console.WriteLine("Ainda não existem turmas");
                 }
                 else if (num == "7")
                 {
                     Console.Clear();
-                    Console.Write("Digite o numero da matricula: ");
-                    int numMatricula = int.Parse(Console.ReadLine());
-                    Console.Write("Digite o numero da turma: ");
-                    int numTurma = int.Parse(Console.ReadLine());
-                    foreach (Turma t in escola.turmas)
-                    {
-                        int indexturma = escola.turmas.FindIndex(c => t.NumTurma == numTurma);
-                        foreach (Aluno a in turma.alunos)
-                        {
-                            int index = turma.alunos.FindIndex(b => a.Matricula == numMatricula);
-                            escola.turmas.Insert(indexturma, turma.alunos[index])
-                        }
-                    }
+                    if (escola.turmas.Count > 0 && escola.alunos.Count > 0)
+                        escola.AtribuirAluno();
+                    else
+                        Console.WriteLine("Ainda não existem turmas");
                 }
                 else if (num == "8")
                 {
                     Console.Clear();
-                    Console.Write("Digite o numero de registro: ");
-                    foreach (Professor p in escola.professores)
-                    {
-                    }
+                    if (escola.turmas.Count > 0 && escola.professores.Count > 0)
+                        escola.AtribuirProfessor();
+                    else
+                        Console.WriteLine("Ainda não existem turmas");
                 }
-                Console.WriteLine("Deseja voltar ao menu? ");
-                num = Console.ReadLine();
+                Console.WriteLine("Deseja voltar ao menu? (S / N) ");
+                string validarmenu = Console.ReadLine();
+                if (Regex.IsMatch(validarmenu, "^[sS]{1}$"))
+                    num = validarmenu;
             }
-            while (num == "9");
+            while (num == "s" || num == "S");
         }
     }
 }

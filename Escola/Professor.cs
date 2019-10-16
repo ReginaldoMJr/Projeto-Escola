@@ -10,6 +10,7 @@ namespace Projeto
         //Metodo para criar um professor
         public Professor CadastrarProfessor()
         {
+            Console.WriteLine("=================== Cadastro Professor ==================\n");
             //Cria um professor com numero de registro aleatorio
             Professor professor = new Professor();
             Random aleatorio = new Random();
