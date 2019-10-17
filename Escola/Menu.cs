@@ -13,6 +13,7 @@ namespace Projeto
             Turma turma = new Turma();
             Professor professor1 = new Professor();
             string num;
+
             do
             {
                 do
@@ -120,5 +121,6 @@ namespace Projeto
             }
             while (num == "s" || num == "S");
         }
+
     }
 }
