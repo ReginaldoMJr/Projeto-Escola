@@ -9,6 +9,7 @@ namespace Projeto
         public List<Turma> turmas = new List<Turma>();
         public List<Professor> professores = new List<Professor>();
         public List<Aluno> alunos = new List<Aluno>();
+        public List<Coordenador> coordenadores = new List<Coordenador>();
 
 
         public void AtribuirAluno()
@@ -66,6 +67,13 @@ namespace Projeto
             }
             turmas.Where(x => x.NumTurma == numTurma).FirstOrDefault().professor = professor;
             professores.Remove(professor);
+        }
+        public void ExibirCoordenadores()
+        {
+            foreach(Coordenador c in coordenadores)
+            {
+                Console.WriteLine($"Registro: {c.Registro} -- Nome: {c.Nome} -- Idade: {c.Idade} -- Sexo: {c.Sexo}");
+            }
         }
         public void ExibirTurmas()
         {

@@ -5,6 +5,7 @@ namespace Projeto
     class Professor : Pessoa
     {
         public int Registro { get; private set; }
+        public Coordenador Contratante { get; private set; }
 
         //Metodo para criar um professor
         public Professor CadastrarProfessor()
@@ -36,7 +37,14 @@ namespace Projeto
                 professor.Sexo = (Console.ReadLine());
             }
             while (professor.Sexo == "");
+            do
+            {
+                Console.Write($"Qual o contratante do(a) {professor.Nome}? ");
+
+            }
+            while (professor.Contratante == null);
             return professor;
+
         }
         
     }

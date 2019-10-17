@@ -18,11 +18,12 @@ namespace Projeto
                     Console.WriteLine("1 - Cadastrar aluno");
                     Console.WriteLine("2 - Cadastrar professor");
                     Console.WriteLine("3 - Cadastrar turma");
-                    Console.WriteLine("4 - Listar alunos");
-                    Console.WriteLine("5 - Listar professores");
-                    Console.WriteLine("6 - Listar turmas");
-                    Console.WriteLine("7 - Atribuir aluno a turma");
-                    Console.WriteLine("8 - Atribuir professor a turma");
+                    Console.WriteLine("4 - Cadastrar coordenador");
+                    Console.WriteLine("5 - Listar alunos");
+                    Console.WriteLine("6 - Listar professores");
+                    Console.WriteLine("7 - Listar turmas");
+                    Console.WriteLine("8 - Atribuir aluno a turma");
+                    Console.WriteLine("9 - Atribuir professor a turma");
                     Console.WriteLine("0 - Sair do programa");
                     num = Console.ReadLine();
                 }
@@ -80,15 +81,31 @@ namespace Projeto
                 }
                 else if (num == "4")
                 {
-                    Console.Clear();
-                    escola.ExibirAlunos();
+                    do
+                    {
+                        Console.Clear();
+                        Console.Write("Quantos coordenadores deseja cadastrar? ");
+                        num = Console.ReadLine();
+                    }
+                    while (Regex.IsMatch(num, "^[0-9]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
+                    for (int i = 0; i < int.Parse(num); i++)
+                    {
+                        Coordenador coordenador = new Coordenador();
+                        coordenador = coordenador.CadastrarCoordenador();
+                        escola.coordenadores.Add(coordenador);
+                    }
                 }
                 else if (num == "5")
                 {
                     Console.Clear();
-                    escola.ExibirProfessores();
+                    escola.ExibirAlunos();
                 }
                 else if (num == "6")
+                {
+                    Console.Clear();
+                    escola.ExibirProfessores();
+                }
+                else if (num == "7")
                 {
                     Console.Clear();
                     if (escola.turmas.Count > 0)
@@ -96,12 +113,12 @@ namespace Projeto
                     else
                         Console.WriteLine("Ainda não existem turmas");
                 }
-                else if (num == "7")
+                else if (num == "8")
                 {
                     Console.Clear();
                     if (escola.alunos.Count < 1)
                     {
-                        Console.WriteLine("Não existem alunos cadastrados\nDeseja cadastrar alunos?\n\nEnter para cadastrar turma\n\nEsc para sair");
+                        Console.WriteLine("Não existem alunos cadastrados\nDeseja cadastrar alunos?\n\nEnter para cadastrar alunos\n\nEsc para sair");
                         if (Console.ReadKey(true).Key == ConsoleKey.Escape)
                         {
                             num = "s";
@@ -151,12 +168,12 @@ namespace Projeto
                 }
 
 
-                else if (num == "8")
+                else if (num == "9")
                 {
                     Console.Clear();
                     if (escola.professores.Count < 1)
                     {
-                        Console.WriteLine("Não existem professores cadastrados\nDeseja cadastrar um professor?\n\nEnter para cadastrar turma\n\nEsc para sair");
+                        Console.WriteLine("Não existem professores cadastrados\nDeseja cadastrar um professor?\n\nEnter para cadastrar professores\n\nEsc para sair");
                         if (Console.ReadKey(true).Key == ConsoleKey.Escape)
                         {
                             num = "s";
