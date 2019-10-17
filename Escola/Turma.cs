@@ -19,7 +19,7 @@ namespace Projeto
         //Metodo para mostrar todos os dados do programa
         public void MostrarTurma()
         {
-            Console.WriteLine($"=================== Turma {NumTurma} =====================\n");
+            Console.WriteLine($"==================  Turma {NumTurma}  ====================\n");
             if (professor == null)
             {
                 Console.WriteLine(" Professor Não atribuido");

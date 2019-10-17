@@ -19,7 +19,11 @@ namespace Projeto
                 ExibirAlunos();
                 Console.Write("Digite o numero da matricula: ");
                 if (int.TryParse(Console.ReadLine(), out int numMatricula))
+                {
                     aluno = alunos.Where(x => x.Matricula == numMatricula).FirstOrDefault();
+                    if (aluno == null)
+                        Console.WriteLine("\nAluno não encontrado, digite novamente\n");
+                }
             }
             Turma turma = null;
             int numTurma = 0;
@@ -29,6 +33,8 @@ namespace Projeto
                 Console.Write("Digite o numero da turma: ");
                 int.TryParse(Console.ReadLine(), out numTurma);
                 turma = turmas.Find(x => x.NumTurma == numTurma);
+                if (turma == null)
+                    Console.WriteLine("\nTurma não encontrada, digite novamente\n");
             }
                 turmas.Where(x => x.NumTurma == numTurma).FirstOrDefault().alunos.Add(aluno);
                 alunos.Remove(aluno);
@@ -41,7 +47,11 @@ namespace Projeto
                 ExibirProfessores();
                 Console.Write("Digite o numero de registro: ");
                 if (int.TryParse(Console.ReadLine(), out int numRegistro))
+                {
                     professor = professores.Where(x => x.Registro == numRegistro).FirstOrDefault();
+                    if (professor == null)
+                        Console.WriteLine("\nProfessor não encontrado, digite novamente\n");
+                }
             }
             Turma turma = null;
             int numTurma = 0;
@@ -51,6 +61,8 @@ namespace Projeto
                 Console.Write("Digite o numero da turma: ");
                 int.TryParse(Console.ReadLine(), out numTurma);
                 turma = turmas.Find(x => x.NumTurma == numTurma);
+                if (turma == null)
+                    Console.WriteLine("\nTurma não encontrada, digite novamente\n");
             }
             turmas.Where(x => x.NumTurma == numTurma).FirstOrDefault().professor = professor;
             professores.Remove(professor);
