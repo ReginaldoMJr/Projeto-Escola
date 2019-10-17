@@ -13,27 +13,45 @@ namespace Projeto
 
         public void AtribuirAluno()
         {
-            ExibirAlunos();
-            Console.Write("Digite o numero da matricula: ");
-            int numMatricula = int.Parse(Console.ReadLine());
-            ExibirTurmas();
-            Console.Write("Digite o numero da turma: ");
-            int numTurma = int.Parse(Console.ReadLine());
-
-            Aluno aluno = alunos.Where(x => x.Matricula == numMatricula).FirstOrDefault();
-            turmas.Where(x => x.NumTurma == numTurma).FirstOrDefault().alunos.Add(aluno);
-            alunos.Remove(aluno);
+            Aluno aluno = null;
+            while (aluno == null)
+            {
+                ExibirAlunos();
+                Console.Write("Digite o numero da matricula: ");
+                if (int.TryParse(Console.ReadLine(), out int numMatricula))
+                    aluno = alunos.Where(x => x.Matricula == numMatricula).FirstOrDefault();
+            }
+            Turma turma = null;
+            int numTurma = 0;
+            while (turma == null)
+            {
+                ExibirTurmas();
+                Console.Write("Digite o numero da turma: ");
+                int.TryParse(Console.ReadLine(), out numTurma);
+                turma = turmas.Find(x => x.NumTurma == numTurma);
+            }
+                turmas.Where(x => x.NumTurma == numTurma).FirstOrDefault().alunos.Add(aluno);
+                alunos.Remove(aluno);
         }
         public void AtribuirProfessor()
         {
-            ExibirProfessores();
-            Console.Write("Digite o numero de registro: ");
-            int numRegistro = int.Parse(Console.ReadLine());
-            ExibirTurmas();
-            Console.Write("Digite o numero da turma: ");
-            int numTurma = int.Parse(Console.ReadLine());
-
-            Professor professor = professores.Where(x => x.Registro == numRegistro).FirstOrDefault();
+            Professor professor = null;
+            while (professor == null)
+            {
+                ExibirProfessores();
+                Console.Write("Digite o numero de registro: ");
+                if (int.TryParse(Console.ReadLine(), out int numRegistro))
+                    professor = professores.Where(x => x.Registro == numRegistro).FirstOrDefault();
+            }
+            Turma turma = null;
+            int numTurma = 0;
+            while (turma == null)
+            {
+                ExibirTurmas();
+                Console.Write("Digite o numero da turma: ");
+                int.TryParse(Console.ReadLine(), out numTurma);
+                turma = turmas.Find(x => x.NumTurma == numTurma);
+            }
             turmas.Where(x => x.NumTurma == numTurma).FirstOrDefault().professor = professor;
             professores.Remove(professor);
         }
@@ -64,10 +82,9 @@ namespace Projeto
                     Console.WriteLine($"Matricula: {s.Matricula} -- Nome: {s.Nome} -- Idade: {s.Idade} -- Sexo: {s.Sexo} -- Bolsista: {s.Bolsista}\n");
             }
         }
-
         public void TurmasAtualizado()
         {
-            foreach(Turma t in turmas)
+            foreach (Turma t in turmas)
             {
                 t.MostrarTurma();
             }

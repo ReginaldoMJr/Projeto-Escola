@@ -7,15 +7,16 @@ namespace Projeto
     {
         public string Bolsista { get; private set; }
         public int Matricula { get; private set; }
+        Escola escola = new Escola();
 
         //Metodo para cadastrar os alunos
         public Aluno CadastrarAluno()
         {
             //Cria um aluno com numero de matricula aleatorio
-            Console.WriteLine("================= Cadastro Aluno ===================\n");
+            Console.WriteLine("\n================= Cadastro Aluno ===================\n");
             Aluno aluno = new Aluno();
             Random aleatorio = new Random();
-            aluno.Matricula = aleatorio.Next(1000, 9999);
+            aluno.Matricula = aleatorio.Next(10000, 99999);
             Console.WriteLine($"Numero da matricula: {aluno.Matricula}");
             //Pede o nome do aluno, fazendo a validação dentro da classe pessoa
             do
