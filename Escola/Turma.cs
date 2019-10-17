@@ -9,7 +9,6 @@ namespace Projeto
         public Professor professor;
         public List<Aluno> alunos = new List<Aluno>();
         //Cadastrar a turma, com numero de turma aleatório 
-        Escola Escola = new Escola();
         public void CadastrarTurma()
         {
             Random numTurma = new Random();
@@ -27,9 +26,13 @@ namespace Projeto
             else
                 Console.Write($"Professor: {professor.Nome} -- Idade: {professor.Idade} -- Sexo: {professor.Sexo} -- Registro: {professor.Registro}\n");
             Console.WriteLine("\n==================== Alunos ========================\n");
-            foreach (Aluno a in alunos)
+            if (alunos.Count < 1)
+                Console.WriteLine("Sem alunos atribuidos");
+            else
+            {
+                foreach (Aluno a in alunos)
                 Console.WriteLine($"Matricula: {a.Matricula} -- Nome: {a.Nome} -- Idade: {a.Idade} -- Sexo: {a.Sexo} -- Bolsista: {a.Bolsista}\n");
+            }
         }
-
     }
 }
