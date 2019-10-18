@@ -6,57 +6,54 @@ namespace Projeto
     {
         public int Registro { get; private set; }
         public Coordenador Contratante { get; private set; }
-        Escola escola = new Escola();
         //Metodo para criar um professor
-        public Professor CadastrarProfessor()
+        public void CadastrarProfessor(Escola escola)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("=================== Cadastro Professor ==================\n");
             Console.ResetColor();
             //Cria um professor com numero de registro aleatorio
-            Professor professor = new Professor();
             Random aleatorio = new Random();
-            professor.Registro = aleatorio.Next(1000, 9999);
-            Console.WriteLine($"Numero de registro: {professor.Registro}");
+            Registro = aleatorio.Next(1000, 9999);
+            Console.WriteLine($"Numero de registro: {Registro}");
             //Pergunta o nome do professor, e faz a validação na classe pessoa
             do
             {
                 Console.Write("Digite o nome do professor: ");
-                professor.Nome = Console.ReadLine();
+                Nome = Console.ReadLine();
             }
-            while (professor.Nome == null);
+            while (Nome == null);
             //Pergunta a idade do professor, e faz a validação na classe pessoa
             do
             {
-                Console.Write($"Digite a idade do(a) {professor.Nome} : ");
-                professor.Idade = (Console.ReadLine());
+                Console.Write($"Digite a idade do(a) {Nome} : ");
+                Idade = (Console.ReadLine());
             }
-            while (professor.Idade == "");
+            while (Idade == "");
             //Pergunta o sexo do professor, e faz a validação na classe pessoa
             do
             {
-                Console.Write($"Qual o sexo do(a) {professor.Nome} (M / F): ");
-                professor.Sexo = (Console.ReadLine());
+                Console.Write($"Qual o sexo do(a) {Nome} (M / F): ");
+                Sexo = (Console.ReadLine());
             }
-            while (professor.Sexo == "");
-            /*do
+            while (Sexo == "");
+            do
             {
                 escola.ExibirCoordenadores();
-                Console.Write($"Qual o registro do contratante do(a) {professor.Nome}? ");
+                Console.Write($"Qual o registro do contratante do(a) {Nome}? ");
                 int.TryParse(Console.ReadLine(), out int result);
-                professor.Contratante = escola.coordenadores.Find(x => x.Registro == result);
-                if (professor.Contratante == null)
+                Contratante = escola.coordenadores.Find(x => x.Registro == result);
+                if (Contratante == null)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Registro de coordenador invalido");
                     Console.ResetColor();
                 }
-            
-            while (professor.Contratante == null);*/
+            }
+            while (Contratante == null);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nProfessor cadastrado com sucesso");
             Console.ResetColor();
-            return professor;
         }
     }
 }

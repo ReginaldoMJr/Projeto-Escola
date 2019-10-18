@@ -9,6 +9,7 @@ namespace Projeto
         public Professor professor;
         public List<Aluno> alunos = new List<Aluno>();
         public Coordenador Responsavel;
+        public uint tamanho;
         //Cadastrar a turma, com numero de turma aleatório 
         public void CadastrarTurma()
         {
@@ -27,6 +28,15 @@ namespace Projeto
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nTurma cadastrada com sucesso");
             Console.ResetColor();
+            Console.Write("Qual o valor maximo de alunos dentro da turma? ");
+            if (uint.TryParse(Console.ReadLine(), out uint valido))
+                tamanho = valido;
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Valor invalido");
+                Console.ResetColor();
+            }
         }
         //Metodo para mostrar todos os dados do programa
         public void MostrarTurma()

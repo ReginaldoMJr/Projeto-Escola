@@ -21,13 +21,14 @@ namespace Projeto
                     Console.WriteLine("4 - Cadastrar coordenador");
                     Console.WriteLine("5 - Listar alunos");
                     Console.WriteLine("6 - Listar professores");
-                    Console.WriteLine("7 - Listar turmas");
-                    Console.WriteLine("8 - Atribuir aluno a turma");
-                    Console.WriteLine("9 - Atribuir professor a turma");
+                    Console.WriteLine("7 - Listar coordenadores");
+                    Console.WriteLine("8 - Listar turmas");
+                    Console.WriteLine("9 - Atribuir aluno a turma");
+                    Console.WriteLine("10 - Atribuir professor a turma");
                     Console.WriteLine("0 - Sair do programa");
                     num = Console.ReadLine();
                 }
-                while (!Regex.IsMatch(num, "^[0-9]{1}$"));
+                while (Regex.IsMatch(num, "^[0-9]{2}$") == false || int.TryParse(num, out int result) == false || result > 10);
 
                 if (num == "0")
                     break;
@@ -43,7 +44,7 @@ namespace Projeto
                     for (int i = 0; i < int.Parse(num); i++)
                     {
                         Aluno aluno = new Aluno();
-                        aluno = aluno.CadastrarAluno();
+                        aluno.CadastrarAluno();
                         escola.alunos.Add(aluno);
                     }
                 }
@@ -59,7 +60,7 @@ namespace Projeto
                     for (int i = 0; i < int.Parse(num); i++)
                     {
                         Professor professor = new Professor();
-                        professor = professor.CadastrarProfessor();
+                        professor.CadastrarProfessor(escola);
                         escola.professores.Add(professor);
                     }
                 }
@@ -91,7 +92,7 @@ namespace Projeto
                     for (int i = 0; i < int.Parse(num); i++)
                     {
                         Coordenador coordenador = new Coordenador();
-                        coordenador = coordenador.CadastrarCoordenador();
+                        coordenador.CadastrarCoordenador();
                         escola.coordenadores.Add(coordenador);
                     }
                 }
@@ -108,6 +109,11 @@ namespace Projeto
                 else if (num == "7")
                 {
                     Console.Clear();
+                    escola.ExibirCoordenadores();
+                }
+                else if (num == "8")
+                {
+                    Console.Clear();
                     if (escola.turmas.Count > 0)
                         escola.TurmasAtualizado();
                     else
@@ -117,7 +123,7 @@ namespace Projeto
                         Console.ResetColor();
                     }
                 }
-                else if (num == "8")
+                else if (num == "9")
                 {
                     Console.Clear();
                     if (escola.alunos.Count < 1)
@@ -140,7 +146,7 @@ namespace Projeto
                             for (int i = 0; i < int.Parse(num); i++)
                             {
                                 Aluno aluno = new Aluno();
-                                aluno = aluno.CadastrarAluno();
+                                aluno.CadastrarAluno();
                                 escola.alunos.Add(aluno);
                             }
                         }
@@ -172,7 +178,7 @@ namespace Projeto
                         }
                     }
                 }
-                else if (num == "9")
+                else if (num == "10")
                 {
                     Console.Clear();
                     if (escola.professores.Count < 1)
@@ -193,7 +199,7 @@ namespace Projeto
                             for (int i = 0; i < int.Parse(num); i++)
                             {
                                 Professor professor = new Professor();
-                                professor = professor.CadastrarProfessor();
+                                professor.CadastrarProfessor(escola);
                                 escola.professores.Add(professor);
                             }
                         }

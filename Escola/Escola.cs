@@ -11,7 +11,6 @@ namespace Projeto
         public List<Aluno> alunos = new List<Aluno>();
         public List<Coordenador> coordenadores = new List<Coordenador>();
 
-
         public void AtribuirAluno()
         {
             Aluno aluno = null;
@@ -37,6 +36,7 @@ namespace Projeto
                 if (turma == null)
                     Console.WriteLine("\nTurma não encontrada, digite novamente\n");
             }
+            
             turmas.Where(x => x.NumTurma == numTurma).FirstOrDefault().alunos.Add(aluno);
             alunos.Remove(aluno);
         }
