@@ -37,8 +37,8 @@ namespace Projeto
                 if (turma == null)
                     Console.WriteLine("\nTurma não encontrada, digite novamente\n");
             }
-                turmas.Where(x => x.NumTurma == numTurma).FirstOrDefault().alunos.Add(aluno);
-                alunos.Remove(aluno);
+            turmas.Where(x => x.NumTurma == numTurma).FirstOrDefault().alunos.Add(aluno);
+            alunos.Remove(aluno);
         }
         public void AtribuirProfessor()
         {
@@ -70,7 +70,7 @@ namespace Projeto
         }
         public void ExibirCoordenadores()
         {
-            foreach(Coordenador c in coordenadores)
+            foreach (Coordenador c in coordenadores)
             {
                 Console.WriteLine($"Registro: {c.Registro} -- Nome: {c.Nome} -- Idade: {c.Idade} -- Sexo: {c.Sexo}");
             }
@@ -84,13 +84,13 @@ namespace Projeto
         }
         public void ExibirProfessores()
         {
-            if (professores.Count < 1)
-                Console.WriteLine("Sem professores cadastrados");
-            else
+            foreach (Turma t1 in turmas)
             {
-                foreach (Professor p in professores)
-                    Console.WriteLine($"Registro: {p.Registro} -- Nome: {p.Nome} -- Idade: {p.Idade} -- Sexo: {p.Sexo}");
+                if (t1.professor != null)
+                    Console.WriteLine($"Turma: {t1.NumTurma} Registro: {t1.professor.Registro} -- Nome: {t1.professor.Nome} -- Idade: {t1.professor.Idade} -- Sexo: {t1.professor.Sexo}");
             }
+            foreach (Professor p in professores)
+                Console.WriteLine($"Registro: {p.Registro} -- Nome: {p.Nome} -- Idade: {p.Idade} -- Sexo: {p.Sexo}");
         }
         public void ExibirAlunos()
         {

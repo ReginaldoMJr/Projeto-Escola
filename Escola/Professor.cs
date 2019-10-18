@@ -6,11 +6,13 @@ namespace Projeto
     {
         public int Registro { get; private set; }
         public Coordenador Contratante { get; private set; }
-
+        Escola escola = new Escola();
         //Metodo para criar um professor
         public Professor CadastrarProfessor()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("=================== Cadastro Professor ==================\n");
+            Console.ResetColor();
             //Cria um professor com numero de registro aleatorio
             Professor professor = new Professor();
             Random aleatorio = new Random();
@@ -37,16 +39,25 @@ namespace Projeto
                 professor.Sexo = (Console.ReadLine());
             }
             while (professor.Sexo == "");
-            do
+            /*do
             {
-                Console.Write($"Qual o contratante do(a) {professor.Nome}? ");
-
-            }
-            while (professor.Contratante == null);
+                escola.ExibirCoordenadores();
+                Console.Write($"Qual o registro do contratante do(a) {professor.Nome}? ");
+                int.TryParse(Console.ReadLine(), out int result);
+                professor.Contratante = escola.coordenadores.Find(x => x.Registro == result);
+                if (professor.Contratante == null)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Registro de coordenador invalido");
+                    Console.ResetColor();
+                }
+            
+            while (professor.Contratante == null);*/
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nProfessor cadastrado com sucesso");
+            Console.ResetColor();
             return professor;
-
         }
-        
     }
 }
 

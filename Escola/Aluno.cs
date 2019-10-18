@@ -7,13 +7,14 @@ namespace Projeto
     {
         public string Bolsista { get; private set; }
         public int Matricula { get; private set; }
-        Escola escola = new Escola();
 
         //Metodo para cadastrar os alunos
         public Aluno CadastrarAluno()
         {
             //Cria um aluno com numero de matricula aleatorio
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n================= Cadastro Aluno ===================\n");
+            Console.ResetColor();
             Aluno aluno = new Aluno();
             Random aleatorio = new Random();
             aluno.Matricula = aleatorio.Next(10000, 99999);
@@ -59,7 +60,9 @@ namespace Projeto
                 aluno.Bolsista = "Sim";
             else
                 aluno.Bolsista = "Nao";
-
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nAluno cadastrado com sucesso");
+            Console.ResetColor();
             return aluno;
         }
     }

@@ -8,30 +8,54 @@ namespace Projeto
         public int NumTurma { get; set; }
         public Professor professor;
         public List<Aluno> alunos = new List<Aluno>();
+        public Coordenador Responsavel;
         //Cadastrar a turma, com numero de turma aleatório 
         public void CadastrarTurma()
         {
+            Escola escola = new Escola();
             Random numTurma = new Random();
             NumTurma = numTurma.Next(100, 999);
             Console.Write($"Numero da turma: {NumTurma}\n");
+            do
+            {
+                Console.Write("Qual o registro de coordenador desse turma? ");
+                int.TryParse(Console.ReadLine(), out int result);
+                Coordenador coordenador = escola.coordenadores.Find(x => x.Registro == result);
+                Responsavel = coordenador;
+            }
+            while (Responsavel == null);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nTurma cadastrada com sucesso");
+            Console.ResetColor();
         }
         //Metodo para mostrar todos os dados do programa
         public void MostrarTurma()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"==================  Turma {NumTurma}  ====================\n");
             if (professor == null)
             {
-                Console.WriteLine(" Professor Não atribuido");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Professor Não atribuido");
             }
             else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write($"Professor: {professor.Nome} -- Idade: {professor.Idade} -- Sexo: {professor.Sexo} -- Registro: {professor.Registro}\n");
+            }
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n==================== Alunos ========================\n");
             if (alunos.Count < 1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Sem alunos atribuidos");
+            }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 foreach (Aluno a in alunos)
-                Console.WriteLine($"Matricula: {a.Matricula} -- Nome: {a.Nome} -- Idade: {a.Idade} -- Sexo: {a.Sexo} -- Bolsista: {a.Bolsista}\n");
+                    Console.WriteLine($"Matricula: {a.Matricula} -- Nome: {a.Nome} -- Idade: {a.Idade} -- Sexo: {a.Sexo} -- Bolsista: {a.Bolsista}\n");
+                Console.ResetColor();
             }
         }
     }

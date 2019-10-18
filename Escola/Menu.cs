@@ -27,7 +27,7 @@ namespace Projeto
                     Console.WriteLine("0 - Sair do programa");
                     num = Console.ReadLine();
                 }
-                while (!Regex.IsMatch(num, "^[0-8]{1}$"));
+                while (!Regex.IsMatch(num, "^[0-9]{1}$"));
 
                 if (num == "0")
                     break;
@@ -111,14 +111,20 @@ namespace Projeto
                     if (escola.turmas.Count > 0)
                         escola.TurmasAtualizado();
                     else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Ainda não existem turmas");
+                        Console.ResetColor();
+                    }
                 }
                 else if (num == "8")
                 {
                     Console.Clear();
                     if (escola.alunos.Count < 1)
                     {
-                        Console.WriteLine("Não existem alunos cadastrados\nDeseja cadastrar alunos?\n\nEnter para cadastrar alunos\n\nEsc para sair");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Não existem alunos cadastrados\n\nDeseja cadastrar alunos?\n\nEnter para cadastrar alunos\n\nEsc para sair");
+                        Console.ResetColor();
                         if (Console.ReadKey(true).Key == ConsoleKey.Escape)
                         {
                             num = "s";
@@ -166,8 +172,6 @@ namespace Projeto
                         }
                     }
                 }
-
-
                 else if (num == "9")
                 {
                     Console.Clear();
