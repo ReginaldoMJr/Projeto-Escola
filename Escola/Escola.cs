@@ -77,8 +77,19 @@ namespace Projeto
             }
             turmas.Where(x => x.NumTurma == numTurma).FirstOrDefault().professor = professor;
             if (turmas.GroupBy(a => a.professor).Any(a => a.Count() == 2))
-            {
                 professores.Remove(professor);
+        }
+        public void AtribuirCoordenador()
+        {
+            ExibirCoordenadores();
+            Console.WriteLine("Digite o numero de registro do coordenador");
+            int.TryParse(Console.ReadLine(), out int result);
+            Coordenador coordenador = coordenadores.Where(x => x.Registro == result).FirstOrDefault();
+            
+            Console.WriteLine("Digite o numero da turma");
+            if (int.TryParse(Console.ReadLine(), out int result1))
+            {
+                turmas.Where(x => x.NumTurma == result1).FirstOrDefault().Responsavel = coordenador;
             }
         }
         public void ExibirCoordenadores()
@@ -177,6 +188,12 @@ namespace Projeto
             int num = int.Parse(Console.ReadLine());
             Coordenador coordenador = coordenadores.Where(x => x.Registro == num).FirstOrDefault();
             coordenadores.Remove(coordenador);
+        }
+        public void RemoverCoordenadorTurma()
+        {
+            Console.WriteLine("Digite o numero da turma que deseja remover o coordenador");
+            int.TryParse(Console.ReadLine(), out int result);
+            turmas.Where(x => x.NumTurma == result).FirstOrDefault().Responsavel = null;
         }
         public void RemoverTurmas()
         {
