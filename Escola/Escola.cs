@@ -70,8 +70,13 @@ namespace Projeto
                 if (turma == null)
                     Console.WriteLine("\nTurma não encontrada, digite novamente\n");
             }
+            if (turma.professor != null)
+            {
+                if (professores.Exists(x => x.Registro == turma.professor.Registro) == false)
+                    professores.Add(turma.professor);
+            }
             turmas.Where(x => x.NumTurma == numTurma).FirstOrDefault().professor = professor;
-            if (turmas.GroupBy(a => a.professor).Any(a => a.Count() >= 2))
+            if (turmas.GroupBy(a => a.professor).Any(a => a.Count() == 2))
             {
                 professores.Remove(professor);
             }
@@ -93,13 +98,15 @@ namespace Projeto
         }
         public void ExibirProfessores()
         {
+            Console.WriteLine("=============== Professores atribuidos ==================\n");
             foreach (Turma t1 in turmas)
             {
                 if (t1.professor != null)
-                    Console.WriteLine($"Turma: {t1.NumTurma} Registro: {t1.professor.Registro} -- Nome: {t1.professor.Nome} -- Idade: {t1.professor.Idade} -- Sexo: {t1.professor.Sexo}");
+                    Console.WriteLine($"Turma: {t1.NumTurma} Registro: {t1.professor.Registro} -- Nome: {t1.professor.Nome} -- Idade: {t1.professor.Idade} -- Sexo: {t1.professor.Sexo} -- Contratante: {t1.professor.Contratante.Nome}");
             }
+            Console.WriteLine("\n=============== Professores disponiveis ==================\n");
             foreach (Professor p in professores)
-                Console.WriteLine($"Registro: {p.Registro} -- Nome: {p.Nome} -- Idade: {p.Idade} -- Sexo: {p.Sexo}");
+                Console.WriteLine($"Registro: {p.Registro} -- Nome: {p.Nome} -- Idade: {p.Idade} -- Sexo: {p.Sexo} -- Contratante {p.Contratante.Nome}");
         }
         public void ExibirAlunos()
         {
@@ -120,9 +127,21 @@ namespace Projeto
         }
         public void RemoverAlunos()
         {
-            int num = int.Parse(Console.ReadLine());
-            Aluno aluno = alunos.Where(x => x.Matricula == num).FirstOrDefault();
-            alunos.Remove(aluno);
+            Aluno aluno;
+            do
+            {
+                if (int.TryParse(Console.ReadLine(), out int result))
+                {
+                    aluno = alunos.Where(x => x.Matricula == result).FirstOrDefault();
+                    alunos.Remove(aluno);
+                }
+                else
+                {
+                    Console.WriteLine("Numero de matricula não encontrado ou invalido");
+                    aluno = null;
+                }
+            }
+            while (aluno == null);
         }
         public void RemoverAlunosTurma()
         {

@@ -12,7 +12,6 @@ namespace Projeto
             Console.WriteLine("=================== Cadastro Coordenador ==================\n");
             Console.ResetColor();
             //Cria um coordenador com numero de registro aleatorio
-            //Coordenador coordenador = new Coordenador();
             Random aleatorio = new Random();
             Registro = aleatorio.Next(1000, 9999);
             Console.WriteLine($"Numero de registro: {Registro}");
