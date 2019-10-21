@@ -77,7 +77,7 @@ namespace Projeto
             }
             turmas.Where(x => x.NumTurma == numTurma).FirstOrDefault().professor = professor;
             if (turmas.GroupBy(a => a.professor).Any(a => a.Count() == 2))
-                professores.Remove(professor);
+                professores.Remove(professor); 
         }
         public void AtribuirCoordenador()
         {
