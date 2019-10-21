@@ -25,10 +25,14 @@ namespace Projeto
                     Console.WriteLine("8 - Listar turmas");
                     Console.WriteLine("9 - Atribuir aluno a turma");
                     Console.WriteLine("10 - Atribuir professor a turma");
+                    Console.WriteLine("11 - Remover aluno da lista de espera");
+                    Console.WriteLine("12 - Remover aluno de uma turma");
+                    Console.WriteLine("13 - Remover professor da lista de espera");
+                    Console.WriteLine("14 - Remover professor de uma turma");
                     Console.WriteLine("0 - Sair do programa");
                     num = Console.ReadLine();
                 }
-                while (Regex.IsMatch(num, "^[0-9]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 10);
+                while (Regex.IsMatch(num, "^[0-9]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 14);
 
                 if (num == "0")
                     break;
@@ -76,7 +80,7 @@ namespace Projeto
                     for (int i = 0; i < int.Parse(num); i++)
                     {
                         Turma turma1 = new Turma();
-                        turma1.CadastrarTurma();
+                        turma1.CadastrarTurma(escola);
                         escola.turmas.Add(turma1);
                     }
                 }
@@ -171,7 +175,7 @@ namespace Projeto
                             for (int i = 0; i < int.Parse(num); i++)
                             {
                                 Turma turma1 = new Turma();
-                                turma1.CadastrarTurma();
+                                turma1.CadastrarTurma(escola);
                                 escola.turmas.Add(turma1);
                             }
                             escola.AtribuirAluno();
@@ -224,12 +228,28 @@ namespace Projeto
                             for (int i = 0; i < int.Parse(num); i++)
                             {
                                 Turma turma1 = new Turma();
-                                turma1.CadastrarTurma();
+                                turma1.CadastrarTurma(escola);
                                 escola.turmas.Add(turma1);
                             }
                             escola.AtribuirProfessor();
                         }
                     }
+                }
+                else if(num == "11")
+                {
+                    escola.RemoverAlunos();
+                }
+                else if (num == "12")
+                {
+                    escola.RemoverAlunosTurma();
+                }
+                else if(num == "13")
+                {
+                    escola.RemoverProfessores();
+                }
+                else if(num == "14")
+                {
+                    escola.RemoverProfessorTurma();
                 }
                 Console.WriteLine("Deseja voltar ao menu? (S / N) ");
                 string validarmenu = Console.ReadLine();

@@ -33,10 +33,15 @@ namespace Projeto
                 Console.Write("Digite o numero da turma: ");
                 int.TryParse(Console.ReadLine(), out numTurma);
                 turma = turmas.Find(x => x.NumTurma == numTurma);
+                if (turma.alunos.Count() >= turma.tamanho)
+                    turma = null;
                 if (turma == null)
-                    Console.WriteLine("\nTurma não encontrada, digite novamente\n");
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\nTurma não encontrada ou lotada, digite novamente\n");
+                    Console.ResetColor();
+                }
             }
-            
             turmas.Where(x => x.NumTurma == numTurma).FirstOrDefault().alunos.Add(aluno);
             alunos.Remove(aluno);
         }
@@ -66,10 +71,14 @@ namespace Projeto
                     Console.WriteLine("\nTurma não encontrada, digite novamente\n");
             }
             turmas.Where(x => x.NumTurma == numTurma).FirstOrDefault().professor = professor;
-            professores.Remove(professor);
+            if (turmas.GroupBy(a => a.professor).Any(a => a.Count() >= 2))
+            {
+                professores.Remove(professor);
+            }
         }
         public void ExibirCoordenadores()
         {
+            Console.WriteLine("============== Coordenadores ==================");
             foreach (Coordenador c in coordenadores)
             {
                 Console.WriteLine($"Registro: {c.Registro} -- Nome: {c.Nome} -- Idade: {c.Idade} -- Sexo: {c.Sexo}");
@@ -115,11 +124,34 @@ namespace Projeto
             Aluno aluno = alunos.Where(x => x.Matricula == num).FirstOrDefault();
             alunos.Remove(aluno);
         }
+        public void RemoverAlunosTurma()
+        {
+            TurmasAtualizado();
+            Console.WriteLine("Digite o numero da turma do aluno");
+            int num = int.Parse(Console.ReadLine());
+            Console.WriteLine("Digite o numero da matricula do aluno");
+            int num2 = int.Parse(Console.ReadLine());
+            Turma turma = turmas.Where(x => x.NumTurma == num).FirstOrDefault();
+            Aluno aluno = turma.alunos.Where(x => x.Matricula == num2).FirstOrDefault();
+            turma.alunos.Remove(aluno);
+            alunos.Add(aluno);
+        }
         public void RemoverProfessores()
         {
             int num = int.Parse(Console.ReadLine());
             Professor professor = professores.Where(x => x.Registro == num).FirstOrDefault();
             professores.Remove(professor);
+        }
+        public void RemoverProfessorTurma()
+        {
+            TurmasAtualizado();
+            Console.WriteLine("Digite o numero da turma do professor");
+            int num = int.Parse(Console.ReadLine());
+            Console.WriteLine("Digite o numero do registro do professor");
+            int num2 = int.Parse(Console.ReadLine());
+            Turma turma = turmas.Where(x => x.NumTurma == num).FirstOrDefault();
+            professores.Add(turma.professor);
+            turma.professor = null;
         }
         public void RemoverCoordenadores()
         {

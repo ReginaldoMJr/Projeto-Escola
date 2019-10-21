@@ -11,14 +11,14 @@ namespace Projeto
         public Coordenador Responsavel;
         public uint tamanho;
         //Cadastrar a turma, com numero de turma aleatório 
-        public void CadastrarTurma()
+        public void CadastrarTurma(Escola escola)
         {
-            Escola escola = new Escola();
             Random numTurma = new Random();
             NumTurma = numTurma.Next(100, 999);
             Console.Write($"Numero da turma: {NumTurma}\n");
             do
             {
+                escola.ExibirCoordenadores();
                 Console.Write("Qual o registro de coordenador desse turma? ");
                 int.TryParse(Console.ReadLine(), out int result);
                 Coordenador coordenador = escola.coordenadores.Find(x => x.Registro == result);
@@ -59,6 +59,7 @@ namespace Projeto
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Sem alunos atribuidos");
+                Console.ResetColor();
             }
             else
             {
