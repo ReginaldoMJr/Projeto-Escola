@@ -28,7 +28,7 @@ namespace Projeto
                     Console.WriteLine("0 - Sair do programa");
                     num = Console.ReadLine();
                 }
-                while (Regex.IsMatch(num, "^[0-9]{2}$") == false || int.TryParse(num, out int result) == false || result > 10);
+                while (Regex.IsMatch(num, "^[0-9]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 10);
 
                 if (num == "0")
                     break;

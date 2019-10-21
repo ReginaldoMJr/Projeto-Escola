@@ -109,5 +109,29 @@ namespace Projeto
                 t.MostrarTurma();
             }
         }
+        public void RemoverAlunos()
+        {
+            int num = int.Parse(Console.ReadLine());
+            Aluno aluno = alunos.Where(x => x.Matricula == num).FirstOrDefault();
+            alunos.Remove(aluno);
+        }
+        public void RemoverProfessores()
+        {
+            int num = int.Parse(Console.ReadLine());
+            Professor professor = professores.Where(x => x.Registro == num).FirstOrDefault();
+            professores.Remove(professor);
+        }
+        public void RemoverCoordenadores()
+        {
+            int num = int.Parse(Console.ReadLine());
+            Coordenador coordenador = coordenadores.Where(x => x.Registro == num).FirstOrDefault();
+            coordenadores.Remove(coordenador);
+        }
+        public void RemoverTurmas()
+        {
+            int num = int.Parse(Console.ReadLine());
+            Turma turma = turmas.Where(x => x.NumTurma == num).FirstOrDefault();
+            turmas.Remove(turma);
+        }
     }
 }
