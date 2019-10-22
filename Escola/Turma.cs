@@ -13,8 +13,8 @@ namespace Projeto
         //Cadastrar a turma, com numero de turma aleatório 
         public void CadastrarTurma(Escola escola)
         {
-            Random numTurma = new Random();
-            NumTurma = numTurma.Next(100, 999);
+            do NumTurma = new Random().Next(1000, 9999);
+            while (escola.turmas.Exists(x => x.NumTurma == NumTurma));
             Console.Write($"Numero da turma: {NumTurma}\n");
             do
             {

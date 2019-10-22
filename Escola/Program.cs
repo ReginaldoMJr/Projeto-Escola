@@ -1,4 +1,7 @@
-﻿namespace Projeto
+﻿using System;
+using System.Text;
+
+namespace Projeto
 {
     class Program
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Projeto
 {
@@ -47,37 +48,44 @@ namespace Projeto
         }
         public void AtribuirProfessor()
         {
-            Professor professor = null;
-            while (professor == null)
+            if (professores.Count < 1)
             {
-                ExibirProfessores();
-                Console.Write("Digite o numero de registro: ");
-                if (int.TryParse(Console.ReadLine(), out int numRegistro))
+                Console.WriteLine("Não existem professores cadastrados");
+            }
+            else
+            {
+                Professor professor = null;
+                while (professor == null)
                 {
-                    professor = professores.Where(x => x.Registro == numRegistro).FirstOrDefault();
-                    if (professor == null)
-                        Console.WriteLine("\nProfessor não encontrado, digite novamente\n");
+                    ExibirProfessores();
+                    Console.Write("Digite o numero de registro: ");
+                    if (int.TryParse(Console.ReadLine(), out int numRegistro))
+                    {
+                        professor = professores.Where(x => x.Registro == numRegistro).FirstOrDefault();
+                        if (professor == null)
+                            Console.WriteLine("\nProfessor não encontrado, digite novamente\n");
+                    }
                 }
+                Turma turma = null;
+                int numTurma = 0;
+                while (turma == null)
+                {
+                    ExibirTurmas();
+                    Console.Write("Digite o numero da turma: ");
+                    int.TryParse(Console.ReadLine(), out numTurma);
+                    turma = turmas.Find(x => x.NumTurma == numTurma);
+                    if (turma == null)
+                        Console.WriteLine("\nTurma não encontrada, digite novamente\n");
+                }
+                if (turma.professor != null)
+                {
+                    if (professores.Exists(x => x.Registro == turma.professor.Registro) == false)
+                        professores.Add(turma.professor);
+                }
+                turmas.Where(x => x.NumTurma == numTurma).FirstOrDefault().professor = professor;
+                if (turmas.GroupBy(a => a.professor).Any(a => a.Count() == 2))
+                    professores.Remove(professor);
             }
-            Turma turma = null;
-            int numTurma = 0;
-            while (turma == null)
-            {
-                ExibirTurmas();
-                Console.Write("Digite o numero da turma: ");
-                int.TryParse(Console.ReadLine(), out numTurma);
-                turma = turmas.Find(x => x.NumTurma == numTurma);
-                if (turma == null)
-                    Console.WriteLine("\nTurma não encontrada, digite novamente\n");
-            }
-            if (turma.professor != null)
-            {
-                if (professores.Exists(x => x.Registro == turma.professor.Registro) == false)
-                    professores.Add(turma.professor);
-            }
-            turmas.Where(x => x.NumTurma == numTurma).FirstOrDefault().professor = professor;
-            if (turmas.GroupBy(a => a.professor).Any(a => a.Count() == 2))
-                professores.Remove(professor); 
         }
         public void AtribuirCoordenador()
         {
@@ -95,10 +103,17 @@ namespace Projeto
         public void ExibirCoordenadores()
         {
             Console.WriteLine("============== Coordenadores ==================");
-            foreach (Coordenador c in coordenadores)
-            {
-                Console.WriteLine($"Registro: {c.Registro} -- Nome: {c.Nome} -- Idade: {c.Idade} -- Sexo: {c.Sexo}");
-            }
+                foreach (Coordenador c in coordenadores)
+                {
+                    Console.WriteLine($"Registro: {c.Registro} -- Nome: {c.Nome} -- Idade: {c.Idade} -- Sexo: {c.Sexo}");
+                    foreach(Turma t in turmas)
+                    {
+                    Console.WriteLine("================== Responsavel pelas turmas ================");
+                    if (c.Registro == t.Responsavel.Registro)
+                        Console.WriteLine($"Turma: {t.NumTurma}");
+                    }
+                }
+                
         }
         public void ExibirTurmas()
         {
@@ -200,6 +215,33 @@ namespace Projeto
             int num = int.Parse(Console.ReadLine());
             Turma turma = turmas.Where(x => x.NumTurma == num).FirstOrDefault();
             turmas.Remove(turma);
+        }
+        public string VoltarMenu()
+        {
+            string result = null;
+            Menu menu = new Menu();
+            StringBuilder buffer = new StringBuilder();
+
+            ConsoleKeyInfo info = Console.ReadKey(true);
+            while (info.Key != ConsoleKey.Enter && info.Key != ConsoleKey.Escape && info.Key != ConsoleKey.Backspace)
+            {
+                Console.Write(info.KeyChar);
+                buffer.Append(info.KeyChar);
+                info = Console.ReadKey(true);
+            }
+            if(info.Key == ConsoleKey.Backspace)
+            {
+                buffer.ToString().Remove(buffer.Length - 2);
+            }
+            if (info.Key == ConsoleKey.Escape)
+            {
+                menu.menu();
+            }
+            if (info.Key == ConsoleKey.Enter)
+            {
+                result = buffer.ToString();
+            }
+            return result;
         }
     }
 }

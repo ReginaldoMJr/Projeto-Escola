@@ -9,20 +9,22 @@ namespace Projeto
         public int Matricula { get; private set; }
 
         //Metodo para cadastrar os alunos
-        public void CadastrarAluno()
+        public void CadastrarAluno(Escola escola)
         {
             //Cria um aluno com numero de matricula aleatorio
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n================= Cadastro Aluno ===================\n");
             Console.ResetColor();
-            Random aleatorio = new Random();
-            Matricula = aleatorio.Next(10000, 99999);
+
+            do Matricula = new Random().Next(10000, 99999); 
+            while (escola.alunos.Exists(x => x.Matricula == Matricula) && escola.turmas.Exists(x => x.alunos.Exists(y => y.Matricula == Matricula)));
+
             Console.WriteLine($"Numero da matricula: {Matricula}");
             //Pede o nome do aluno, fazendo a validação dentro da classe pessoa
             do
             {
                 Console.Write("Qual o nome do aluno? ");
-                Nome = Console.ReadLine();
+                Nome = escola.VoltarMenu();
             }
             while (Nome == null);
             //Pede a idade do aluno, fazendo a validação dentro da classe pessoa

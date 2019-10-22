@@ -13,8 +13,8 @@ namespace Projeto
             Console.WriteLine("=================== Cadastro Professor ==================\n");
             Console.ResetColor();
             //Cria um professor com numero de registro aleatorio
-            Random aleatorio = new Random();
-            Registro = aleatorio.Next(1000, 9999);
+            do Registro = new Random().Next(100, 999);
+            while (escola.professores.Exists(x => x.Registro == Registro));
             Console.WriteLine($"Numero de registro: {Registro}");
             //Pergunta o nome do professor, e faz a validação na classe pessoa
             do
