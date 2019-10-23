@@ -27,16 +27,20 @@ namespace Projeto {
             }
             while (Responsavel == null);
             Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Qual o valor maximo de alunos dentro da turma? ");
+            do {
+                if (uint.TryParse(Console.ReadLine(), out uint valido))
+                    tamanho = valido;
+                else {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Valor invalido");
+                    Console.ResetColor();
+                }
+            }
+            while (tamanho < 1);
             Console.WriteLine("\nTurma cadastrada com sucesso");
             Console.ResetColor();
-            Console.Write("Qual o valor maximo de alunos dentro da turma? ");
-            if (uint.TryParse(Console.ReadLine(), out uint valido))
-                tamanho = valido;
-            else {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Valor invalido");
-                Console.ResetColor();
-            }
+            
         }
         //Metodo para mostrar todos os dados do programa
         public void MostrarTurma() {
