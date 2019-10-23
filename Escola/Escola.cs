@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Projeto {
     class Escola {
@@ -9,9 +8,14 @@ namespace Projeto {
         public List<Professor> professores = new List<Professor>();
         public List<Aluno> alunos = new List<Aluno>();
         public List<Coordenador> coordenadores = new List<Coordenador>();
+        Menu Menu;
         public void AtribuirAluno() {
             Aluno aluno = null;
             Console.WriteLine("Atribuir aluno selecionado");
+            Console.WriteLine("Aperte Esc para sair ou Enter para continuar");
+            if(Console.ReadKey().Key == ConsoleKey.Escape) {
+                Menu.menu(this);
+            }
             while (aluno == null) {
                 ExibirAlunos();
                 Console.Write("Digite o numero da matricula: ");
@@ -226,6 +230,8 @@ namespace Projeto {
         public void RemoverCoordenadorTurma() {
             Turma turma;
             do {
+                if (turmas.Count < 1)
+                    Menu.menu(this);
                 ExibirTurmas();
                 Console.WriteLine("Digite o numero da turma que deseja remover o coordenador");
                 int.TryParse(Console.ReadLine(), out int result);
@@ -237,16 +243,6 @@ namespace Projeto {
                 }
             }
             while (turma == null);
-        }
-        public void RemoverTurmas() {
-            Turma turma;
-            do {
-                ExibirTurmas();
-                int.TryParse(Console.ReadLine(), out int num);
-                turma = turmas.Where(x => x.NumTurma == num).FirstOrDefault();
-            }
-            while (turma == null);
-            turmas.Remove(turma);
         }
     }
 }
