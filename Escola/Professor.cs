@@ -1,14 +1,11 @@
 ﻿using System;
 
-namespace Projeto
-{
-    class Professor : Pessoa
-    {
+namespace Projeto {
+    class Professor : Pessoa {
         public int Registro { get; private set; }
         public Coordenador Contratante { get; private set; }
         //Metodo para criar um professor
-        public void CadastrarProfessor(Escola escola)
-        {
+        public void CadastrarProfessor(Escola escola) {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("=================== Cadastro Professor ==================\n");
             Console.ResetColor();
@@ -17,34 +14,29 @@ namespace Projeto
             while (escola.professores.Exists(x => x.Registro == Registro));
             Console.WriteLine($"Numero de registro: {Registro}");
             //Pergunta o nome do professor, e faz a validação na classe pessoa
-            do
-            {
+            do {
                 Console.Write("Digite o nome do professor: ");
                 Nome = Console.ReadLine();
             }
             while (Nome == null);
             //Pergunta a idade do professor, e faz a validação na classe pessoa
-            do
-            {
+            do {
                 Console.Write($"Digite a idade do(a) {Nome} : ");
                 Idade = (Console.ReadLine());
             }
             while (Idade == "");
             //Pergunta o sexo do professor, e faz a validação na classe pessoa
-            do
-            {
+            do {
                 Console.Write($"Qual o sexo do(a) {Nome} (M / F): ");
                 Sexo = (Console.ReadLine());
             }
             while (Sexo == "");
-            do
-            {
+            do {
                 escola.ExibirCoordenadores();
                 Console.Write($"Qual o registro do contratante do(a) {Nome}? ");
                 int.TryParse(Console.ReadLine(), out int result);
                 Contratante = escola.coordenadores.Find(x => x.Registro == result);
-                if (Contratante == null)
-                {
+                if (Contratante == null) {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Registro de coordenador invalido");
                     Console.ResetColor();

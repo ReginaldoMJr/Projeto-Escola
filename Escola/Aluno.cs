@@ -1,56 +1,48 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Projeto
-{
-    class Aluno : Pessoa
-    {
+namespace Projeto {
+    class Aluno : Pessoa {
         public string Bolsista { get; private set; }
         public int Matricula { get; private set; }
 
         //Metodo para cadastrar os alunos
-        public void CadastrarAluno(Escola escola)
-        {
+        public void CadastrarAluno(Escola escola) {
             //Cria um aluno com numero de matricula aleatorio
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n================= Cadastro Aluno ===================\n");
             Console.ResetColor();
 
-            do Matricula = new Random().Next(10000, 99999); 
+            do Matricula = new Random().Next(10000, 99999);
             while (escola.alunos.Exists(x => x.Matricula == Matricula) && escola.turmas.Exists(x => x.alunos.Exists(y => y.Matricula == Matricula)));
 
             Console.WriteLine($"Numero da matricula: {Matricula}");
             //Pede o nome do aluno, fazendo a validação dentro da classe pessoa
-            do
-            {
+            do {
                 Console.Write("Qual o nome do aluno? ");
-                Nome = escola.VoltarMenu();
+                Nome = Console.ReadLine();
             }
             while (Nome == null);
             //Pede a idade do aluno, fazendo a validação dentro da classe pessoa
-            do
-            {
+            do {
                 Console.Write($"Qual a idade do(a) {Nome}? ");
                 Idade = (Console.ReadLine());
             }
             while (Idade == "");
             //Pede o sexo do aluno, fazendo a validação dentro da classe pessoa
-            do
-            {
+            do {
                 Console.Write($"Qual o sexo do(a) {Nome} (M / F)? ");
                 Sexo = (Console.ReadLine());
             }
             while (Sexo == "");
             //Pergunta se o aluno é bolsista ou não, e faz a validação dentro da propria classe
             char bolsa;
-            do
-            {
+            do {
                 Console.Write($"O(a) {Nome} é bolsista (S / N)? ");
                 string testeBolsa = Console.ReadLine();
                 if (Regex.IsMatch(testeBolsa, "^[sSnN]{1}$"))
                     bolsa = char.Parse(testeBolsa);
-                else
-                {
+                else {
                     Console.WriteLine("\nValor invalido\nDigite novamente\n");
                     bolsa = ' ';
                 }
