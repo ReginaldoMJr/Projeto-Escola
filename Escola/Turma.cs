@@ -44,11 +44,11 @@ namespace Projeto {
             Console.WriteLine($"==================  Turma {NumTurma}  ====================\n");
             if (Responsavel == null) {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Coordenador não atribuido");
+                Console.WriteLine("Coordenador não atribuido\n");
             }
             else {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Coordenador: {Responsavel.Nome} -- Idade: {Responsavel.Idade} -- Sexo: {Responsavel.Sexo} -- Registro: {Responsavel.Registro}");
+                Console.WriteLine($"Coordenador: {Responsavel.Nome} -- Idade: {Responsavel.Idade} -- Sexo: {Responsavel.Sexo} -- Registro: {Responsavel.Registro}\n");
             }
             if (professor == null) {
                 Console.ForegroundColor = ConsoleColor.Red;

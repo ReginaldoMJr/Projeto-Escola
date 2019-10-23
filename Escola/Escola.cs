@@ -94,7 +94,7 @@ namespace Projeto {
             foreach (Coordenador c in coordenadores) {
                 Console.WriteLine($"Registro: {c.Registro} -- Nome: {c.Nome} -- Idade: {c.Idade} -- Sexo: {c.Sexo}");
                 foreach (Turma t in turmas) {
-                    Console.WriteLine("================== Responsavel pelas turmas ================");
+                    Console.WriteLine("Responsavel pelas turmas: ");
                     if (c.Registro == t.Responsavel.Registro)
                         Console.WriteLine($"Turma: {t.NumTurma}");
                 }
