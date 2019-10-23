@@ -5,10 +5,11 @@ namespace Projeto {
     class Aluno : Pessoa {
         public string Bolsista { get; private set; }
         public int Matricula { get; private set; }
-
+        Menu menu;
         //Metodo para cadastrar os alunos
         public void CadastrarAluno(Escola escola) {
             //Cria um aluno com numero de matricula aleatorio
+            Console.WriteLine("Cadastro aluno selecionado");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n================= Cadastro Aluno ===================\n");
             Console.ResetColor();

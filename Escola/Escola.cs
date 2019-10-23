@@ -9,11 +9,9 @@ namespace Projeto {
         public List<Professor> professores = new List<Professor>();
         public List<Aluno> alunos = new List<Aluno>();
         public List<Coordenador> coordenadores = new List<Coordenador>();
-        Menu menu;
         public void AtribuirAluno() {
             Aluno aluno = null;
             Console.WriteLine("Atribuir aluno selecionado");
-            this.info(menu);
             while (aluno == null) {
                 ExibirAlunos();
                 Console.Write("Digite o numero da matricula: ");
@@ -21,7 +19,6 @@ namespace Projeto {
                     aluno = alunos.Where(x => x.Matricula == numMatricula).FirstOrDefault();
                     if (aluno == null) {
                         Console.WriteLine("\nAluno não encontrado, digite novamente\n");
-                        this.info(menu);
                     }
                 }
             }
@@ -250,20 +247,6 @@ namespace Projeto {
             }
             while (turma == null);
             turmas.Remove(turma);
-        }
-        public void info(Menu menu) {
-            ConsoleKeyInfo info;
-            Console.WriteLine("Aperte ESC para sair ou Enter para continuar");
-            do {
-                info = Console.ReadKey();
-                if (info.Key == ConsoleKey.Escape) {
-                    menu.menu();
-                }
-                if (info.Key == ConsoleKey.Enter) {
-                    break;
-                }
-            }
-            while (info.Key != ConsoleKey.Escape || info.Key != ConsoleKey.Enter);
         }
     }
 }
