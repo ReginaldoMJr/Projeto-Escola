@@ -166,7 +166,7 @@ namespace Projeto {
                 Console.WriteLine("Digite o numero da matricula do aluno");
                 int.TryParse(Console.ReadLine(), out int num2);
                 aluno = turma.alunos.Where(x => x.Matricula == num2).FirstOrDefault();
-                if (turma == null) {
+                if (aluno == null) {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Aluno não encontrada");
                     Console.ResetColor();
@@ -179,6 +179,8 @@ namespace Projeto {
         public void RemoverProfessores() {
             Professor professor;
             do {
+                ExibirProfessores();
+                Console.Write("Digite o numero de registro de professor: ");
                 int.TryParse(Console.ReadLine(), out int num);
                 professor = professores.Where(x => x.Registro == num).FirstOrDefault();
                 if (professor == null) {
