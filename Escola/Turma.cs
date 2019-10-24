@@ -26,7 +26,6 @@ namespace Projeto {
                 }
             }
             while (Responsavel == null);
-            Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Qual o valor maximo de alunos dentro da turma? ");
             do {
                 if (uint.TryParse(Console.ReadLine(), out uint valido))
@@ -38,6 +37,7 @@ namespace Projeto {
                 }
             }
             while (tamanho < 1);
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nTurma cadastrada com sucesso");
             Console.ResetColor();
             
