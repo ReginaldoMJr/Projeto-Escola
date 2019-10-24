@@ -29,7 +29,7 @@ namespace Projeto {
                     Console.WriteLine("0 - Sair do programa");
                     num = Console.ReadLine();
                 }
-                while (Regex.IsMatch(num, "^[0-9]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 16);
+                while (Regex.IsMatch(num, @"^[\d]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 16);
 
                 if (num == "0")
                     Environment.Exit(0);
@@ -45,7 +45,7 @@ namespace Projeto {
                         Console.Write("Quantos alunos deseja cadastrar? ");
                         num = Console.ReadLine();
                     }
-                    while (Regex.IsMatch(num, "^[0-9]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
+                    while (Regex.IsMatch(num, @"^[\d]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
                     for (int i = 0; i < int.Parse(num); i++) {
                         Aluno aluno = new Aluno();
                         aluno.CadastrarAluno(escola);
@@ -64,7 +64,7 @@ namespace Projeto {
                             Console.Write("Quantos coordenadores deseja cadastrar? ");
                             num = Console.ReadLine();
                         }
-                        while (Regex.IsMatch(num, "^[0-9]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
+                        while (Regex.IsMatch(num, @"^[\d]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
                         for (int i = 0; i < int.Parse(num); i++) {
                             Coordenador coordenador = new Coordenador();
                             coordenador.CadastrarCoordenador(escola);
@@ -82,7 +82,7 @@ namespace Projeto {
                         Console.Write("Quantos professores deseja cadastrar? ");
                         num = Console.ReadLine();
                     }
-                    while (Regex.IsMatch(num, "^[0-9]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
+                    while (Regex.IsMatch(num, @"^[\d]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
                     for (int i = 0; i < int.Parse(num); i++) {
                         Professor professor = new Professor();
                         professor.CadastrarProfessor(escola);
@@ -102,7 +102,7 @@ namespace Projeto {
                             Console.Write("Quantos coordenadores deseja cadastrar? ");
                             num = Console.ReadLine();
                         }
-                        while (Regex.IsMatch(num, "^[0-9]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
+                        while (Regex.IsMatch(num, @"^[\d]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
                         for (int i = 0; i < int.Parse(num); i++) {
                             Coordenador coordenador = new Coordenador();
                             coordenador.CadastrarCoordenador(escola);
@@ -120,7 +120,7 @@ namespace Projeto {
                         Console.Write("Quantas turmas deseja cadastrar? ");
                         num = Console.ReadLine();
                     }
-                    while (Regex.IsMatch(num, "^[0-9]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
+                    while (Regex.IsMatch(num, @"^[\d]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
                     for (int i = 0; i < int.Parse(num); i++) {
                         Turma turma1 = new Turma();
                         turma1.CadastrarTurma(escola);
@@ -139,7 +139,7 @@ namespace Projeto {
                         Console.Write("Quantos coordenadores deseja cadastrar? ");
                         num = Console.ReadLine();
                     }
-                    while (Regex.IsMatch(num, "^[0-9]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
+                    while (Regex.IsMatch(num, @"^[\d]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
                     for (int i = 0; i < int.Parse(num); i++) {
                         Coordenador coordenador = new Coordenador();
                         coordenador.CadastrarCoordenador(escola);
@@ -231,7 +231,7 @@ namespace Projeto {
                                 Console.Write("Quantos alunos deseja cadastrar? ");
                                 num = Console.ReadLine();
                             }
-                            while (Regex.IsMatch(num, "^[0-9]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
+                            while (Regex.IsMatch(num, @"^[\d]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
                             for (int i = 0; i < int.Parse(num); i++) {
                                 Aluno aluno = new Aluno();
                                 aluno.CadastrarAluno(escola);
@@ -252,7 +252,7 @@ namespace Projeto {
                                 Console.Write("Quantas turmas deseja cadastrar? ");
                                 num = Console.ReadLine();
                             }
-                            while (Regex.IsMatch(num, "^[0-9]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
+                            while (Regex.IsMatch(num, @"^[\d]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
                             for (int i = 0; i < int.Parse(num); i++) {
                                 Turma turma1 = new Turma();
                                 turma1.CadastrarTurma(escola);
@@ -275,7 +275,7 @@ namespace Projeto {
                                 Console.Write("Quantos professores deseja cadastrar? ");
                                 num = Console.ReadLine();
                             }
-                            while (Regex.IsMatch(num, "^[0-9]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
+                            while (Regex.IsMatch(num, @"^[\d]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
                             for (int i = 0; i < int.Parse(num); i++) {
                                 Professor professor = new Professor();
                                 professor.CadastrarProfessor(escola);
@@ -300,7 +300,7 @@ namespace Projeto {
                                 Console.Write("Quantas turmas deseja cadastrar? ");
                                 num = Console.ReadLine();
                             }
-                            while (Regex.IsMatch(num, "^[0-9]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
+                            while (Regex.IsMatch(num, @"^[\d]{1,2}$") == false || int.TryParse(num, out int result) == false || result > 15);
                             for (int i = 0; i < int.Parse(num); i++) {
                                 Turma turma1 = new Turma();
                                 turma1.CadastrarTurma(escola);
